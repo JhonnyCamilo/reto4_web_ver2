@@ -18,12 +18,33 @@ const ActualizarProducto = () => {
         //console.log(data);
         guardarProductosActualizar(data);
     });
+    
+    
     const { brand, price, photography, category,quantity,description, } = productosActualizar;
     //console.log(brand)
+    
+    
     const actualizarProducto = reference =>{
         console.log(reference);
 
+        fetch(`http://localhost:8080/api/fragance/update`, {
+        method: "PUT",
+        body: reference,
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            
+        
+    });
+
     } 
+    
+    
     const [ estadoPedido, setEstadoPedido ] = useState(); 
     const formik = useFormik({
         initialValues: {
@@ -68,7 +89,20 @@ const ActualizarProducto = () => {
         onSubmit: datos => {
           
                 console.log(datos);
-          
+                fetch(`http://localhost:8080/api/fragance/update`, {
+                    method: "PUT",
+                    body: datos,
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                      },
+                    })
+                      .then((res) => res.json())
+                      .then((data) => {
+                        console.log(data);
+                        
+                    
+                });
         }
      });
     
@@ -96,12 +130,7 @@ const ActualizarProducto = () => {
                                 onBlur={formik.handleBlur}   
                             />
                         </div>
-                        { formik.touched.brand && formik.errors.brand ? (
-                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-                                <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.brand} </p>
-                            </div>
-                        ) : null }
+                   
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">Category</label>
@@ -116,12 +145,7 @@ const ActualizarProducto = () => {
                              
                             />
                         </div>
-                        { formik.touched.category && formik.errors.category ? (
-                            <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-                                <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.category} </p>
-                            </div>
-                        ) : null }
+                 
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">PRESENTACION</label>
@@ -135,12 +159,7 @@ const ActualizarProducto = () => {
                                 onBlur={formik.handleBlur}    
                             />
                         </div>
-                        { formik.touched.presentation && formik.errors.presentation ? (
-                            <div className="bg-blue-200 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-                                <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.presentation} </p>
-                            </div>
-                        ) : null }
+                 
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">DESCRIPCION</label>
@@ -154,12 +173,7 @@ const ActualizarProducto = () => {
                                 onBlur={formik.handleBlur}      
                             />
                         </div>
-                        { formik.touched.description && formik.errors.description ? (
-                            <div className="bg-blue-200 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-                                <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.description} </p>
-                            </div>
-                        ) : null }
+                   
 
                 <select
                     className="mt-2 appearance-none bg-blue-600 border border-blue-600 text-white p-2 text-center rounded leading-tight focus:outline-none focus:bg-blue-600 focus:border-blue-500 uppercase text-xs font-bold "
@@ -184,12 +198,7 @@ const ActualizarProducto = () => {
                              
                             />
                         </div>
-                        { formik.touched.price && formik.errors.price ? (
-                            <div className="bg-blue-200 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-                                <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.price} </p>
-                            </div>
-                        ) : null }
+                  
 
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">CANTIDAD</label>
@@ -204,12 +213,7 @@ const ActualizarProducto = () => {
                              
                             />
                         </div>
-                        { formik.touched.quantity && formik.errors.quantity ? (
-                            <div className="bg-blue-200 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-                                <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.quantity} </p>
-                            </div>
-                        ) : null }
+                 
 
                     <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="nombre">FOTOGRAFIA</label>
@@ -224,23 +228,14 @@ const ActualizarProducto = () => {
                              
                             />
                         </div>
-                        { formik.touched.photography && formik.errors.photography ? (
-                            <div className="bg-blue-200 border-l-4 border-red-500 text-red-700 p-4 mb-5" role="alert">
-                                <p className="font-bold">Hubo un error:</p>
-                                <p>{formik.errors.photography} </p>
-                            </div>
-                        ) : null }
+                   
                    
 
-                      
-                    <button
-                            onClick={ () => actualizarProducto(reference)}
+                   <input
                             type="submit"
                             className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
-                           > 
-                           Actualizar
-                           
-                           </button>
+                            value="Actualizar Producto"
+                        />
                        
 
 
