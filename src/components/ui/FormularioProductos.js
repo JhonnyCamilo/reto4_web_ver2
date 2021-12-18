@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import ActualizarProducto from '../paginas/ActualizarProducto';
 
 
 const FormularioProductos = ({producto}) => {
 
     const {reference, brand, price, photography, category,quantity } = producto;
 
-    
-    const actualizarProducto = reference =>{
-        console.log(reference);
-    }
+    const [ productos, guardarProductos] = useState([]);
+
+    fetch("http://localhost:8080/api/fragance/all")
+    .then((res) => res.json())
+    .then((data) => {
+        //console.log(data);
+        guardarProductos(data);
+    });
+   
 
 
 
@@ -52,6 +59,10 @@ const FormularioProductos = ({producto}) => {
 
 
     return( 
+        <>
+    
+                
+
         <div className="w-full px-3 mb-4">
             <div className="p-5 shadow-md bg-white">
                 <div className="lg:flex">
@@ -84,18 +95,17 @@ const FormularioProductos = ({producto}) => {
                            
                            </button>
 
-                           <button
-                            onClick={ () => actualizarProducto(producto.reference)}
-                            type="submit"
-                            className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
-                           > 
-                           Actualizar
-                           
-                           </button>
+                           <Link to="/actualizar-producto" className="  bg-blue-800 hover:bg-blue-700, inline-block mb-5 p-2 text-white uppercase font-bold">
+                            Actualizar
+                            </Link>
                     </div>
                 </div>
             </div>
         </div>
+        
+        </>
+        
+        
      );
 }
  

@@ -10,6 +10,8 @@ import DetalleOrdenes from "./components/paginas/DetalleOrdenes";
 import DetalleUsuarios from "./components/paginas/DetalleUsuarios";
 import DetalleProductos from "./components/paginas/DetalleProductos";
 
+import ActualizarProducto from "./components/paginas/ActualizarProducto";
+
 import Sidebar from './components/ui/Sidebar';
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
                 <Route path="/nueva-orden" element={<DetalleOrdenes/> }/>
                 <Route path="/nuevo-producto" element={<DetalleProductos/> }/>
                 <Route path="/nuevo-usuario" element={<DetalleUsuarios/> }/>
+                <Route path="/actualizar-producto" element={<ActualizarProducto/> }/>
       </Routes>
     </div>
     </div>
