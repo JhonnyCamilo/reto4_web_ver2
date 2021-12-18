@@ -28,7 +28,8 @@ function App() {
                 <Route path="/nueva-orden" element={<DetalleOrdenes/> }/>
                 <Route path="/nuevo-producto" element={<DetalleProductos/> }/>
                 <Route path="/nuevo-usuario" element={<DetalleUsuarios/> }/>
-                <Route path="/actualizar-producto" element={<ActualizarProducto/> }/>
+                <Route path="/actualizar-producto/:reference" element={< ActualizarProducto/>} />
+
       </Routes>
     </div>
     </div>

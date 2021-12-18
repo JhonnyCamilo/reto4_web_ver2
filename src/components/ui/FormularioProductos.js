@@ -17,7 +17,15 @@ const FormularioProductos = ({producto}) => {
         guardarProductos(data);
     });
    
+const actualizarProducto = reference =>{
 
+    {productos.map( producto =>(
+        <ActualizarProducto 
+       key={producto.reference}
+        producto={producto}
+       /> ))}
+  
+}
 
 
     const borrarProducto = reference =>{
@@ -94,10 +102,12 @@ const FormularioProductos = ({producto}) => {
                            Borrar
                            
                            </button>
-
-                           <Link to="/actualizar-producto" className="  bg-blue-800 hover:bg-blue-700, inline-block mb-5 p-2 text-white uppercase font-bold">
-                            Actualizar
+                          
+                            <Link to={`/actualizar-producto/${producto.reference}`} className="  bg-blue-800 hover:bg-blue-700, inline-block mb-5 p-2 text-white uppercase font-bold">
+                                Actualizar Producto
                             </Link>
+                           
+                          
                     </div>
                 </div>
             </div>
